@@ -1,0 +1,34 @@
+[build]
+  publish = "."
+
+# ─── Cache headers ───────────────────────────────────────────────────────────
+# HTML: no-cache so updates deploy instantly
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+
+# Video: long cache (filename won't change)
+[[headers]]
+  for = "/*.mp4"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Images: long cache
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Stems audio files
+[[headers]]
+  for = "/stems/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
